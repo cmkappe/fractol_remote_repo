@@ -6,7 +6,7 @@
 /*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/02/22 12:48:33 by chiarakappe      ###   ########.fr       */
+/*   Updated: 2025/02/22 14:32:26 by chiarakappe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,37 @@ int ft_strcmp(char *str1, char *str2)
 	return (0);
 }
 
+void	my_mlx_pixel_put(t_image *data, int x, int y, int colour)
+{
+	char	*dst;
+
+	dst = data->adress_pointer + (y * data->len_of_line + x * (data->bits_per_pxl / 8));
+	*(unsigned int*)dst = colour;
+}
+
+static void	fractol_init(t_fractol *fractol)
+{
+	fractol->mlx_pointer = mlx_init();
+	fractol->window_pointer = mlx_new_window(fractol->mlx_pointer, WIDTH, HEIGHT, fractol->title);
+	fractol->image.image_pointer = mlx_new_image(fractol->mlx_pointer, WIDTH, HEIGHT);
+	fractol->image.adress_pointer = mlx_get_data_addr(fractol->image.image_pointer, 
+		&fractol->image.bits_per_pxl, &fractol->image.len_of_line, &fractol->image.endian);
+	
+}
+
+int	close_window(t_fractol *fractol)
+{
+	(void)fractol;
+	exit(EXIT_SUCCESS);
+}
+
+
+int	handle_keypress(int keycode, t_fractol *fractol)
+{
+	if (keycode == ESC_KEY)
+		close_window(fractol);
+	return (0);
+}
 
 
 int main(int ac, char **av)
@@ -45,12 +76,13 @@ int main(int ac, char **av)
 		printf("Wrong input, please try again.");
 		exit(EXIT_FAILURE);
 	}
-	fractol.mlx_pointer = mlx_init();
 	fractol.title = av[1];
-	fractol.window_pointer = mlx_new_window(fractol.mlx_pointer, WIDTH, HEIGHT, fractol.title);
-	fractol.image.image_pointer = mlx_new_image(fractol.mlx_pointer, WIDTH, HEIGHT);
-	fractol.image.adress_pointer = mlx_get_data_addr(fractol.image.image_pointer, 
-		&fractol.image.bits_per_pxl, &fractol.image.len_of_line, &fractol.image.endian);
+	fractol_init(&fractol);
+	
+	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypress, &fractol);
+
+	mlx_loop(fractol.mlx_pointer);
+
 
 	exit(EXIT_SUCCESS);
 }
