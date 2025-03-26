@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:17:51 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/19 15:03:46 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/25 19:06:44 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include "./mlx/mlx.h"
 
+# define MAX_ITER 100
 # define HEIGHT 800
 # define WIDTH 800
 
@@ -35,8 +36,8 @@
 
 typedef	struct s_double_data
 {
-	double	real;
-	double	imaginary;
+	double	real;			// x
+	double	imaginary;		// y
 }				t_double_data;
 
 typedef struct s_img
@@ -54,6 +55,8 @@ typedef struct s_fractol
 	void	*window_pointer;
 	char	*title;
 	int		max_iterations;
+	double	julia_real;
+	double	julia_imag;
 
 	t_img	img;
 }				t_fractol;
