@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/28 17:34:13 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:34:46 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static void	fractol_init(t_fractol *fractol)
 	fractol->img.adress_pointer = mlx_get_data_addr(fractol->img.img_pointer,
 			&fractol->img.bits_per_pxl, &fractol->img.len_of_line,
 			&fractol->img.endian);
+	fractol->zoom = 1;
+	fractol->offset_x = 0;
+	fractol->offset_x = 0;
 }
 
 int main(int ac, char **av)
@@ -55,6 +58,7 @@ int main(int ac, char **av)
 	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypresses, &fractol);
 	mlx_hook(fractol.window_pointer, 17, 1L << 17, close_window, &fractol);
 	mlx_mouse_hook(fractol.window_pointer, mouse_hook, &fractol);
+	//mlx_key_hook(fractol.window_pointer, key_hook, &fractol);
 	render(&fractol);
 	mlx_loop(fractol.mlx_pointer);
 	exit(EXIT_SUCCESS);

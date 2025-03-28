@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:28:31 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/28 18:56:19 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:32:08 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int iterations(int x, int y, t_fractol *fractol)
 	t_double_data	c_const;
 	int				iterations;
 
-	z_imag.real = normalizing(x, -2, 2, WIDTH) + fractol->offset_x;
-	z_imag.imaginary = normalizing(y, -2, 2, HEIGHT) + fractol->offset_y;
+	z_imag.real = normalizing(x, -2, 2, WIDTH) / fractol->zoom + fractol->offset_x;
+	z_imag.imaginary = normalizing(y, -2, 2, HEIGHT) / fractol->zoom + fractol->offset_y;
 	if (ft_strcmp(fractol->title, "Mandelbrot") == 0)
 	{
 		c_const = z_imag;
@@ -88,13 +88,20 @@ int	render(t_fractol *fractol)
 	return (0);
 }
 
-void zoom(t_fractol *fractol, int mouse_x, int mouse_y, double zoom_factor)
-{
-    double normalized_x = normalizing(mouse_x, -2, 2, WIDTH);
-    double normalized_y = normalizing(mouse_y, -2, 2, HEIGHT);
+// void zoom(t_fractol *fractol, int mouse_x, int mouse_y, double zoom_factor)
+// {
 
-    fractol->offset_x += (normalized_x - fractol->offset_x) * (1 - zoom_factor);
-    fractol->offset_y += (normalized_y - fractol->offset_y) * (1 - zoom_factor);
-    fractol->zoom *= zoom_factor;
-}
+// 	(void)mouse_y;
+// 	(void)mouse_x;
+
+//     // double normalized_x = normalizing(mouse_x, -2, 2, WIDTH);
+//     // double normalized_y = normalizing(mouse_y, -2, 2, HEIGHT);
+
+//     // fractol->offset_x += (normalized_x - fractol->offset_x) * (1 - zoom_factor);
+//     // fractol->offset_y += (normalized_y - fractol->offset_y) * (1 - zoom_factor);
+//     // fractol->zoom *= zoom_factor;
+
+// 	printf("Zoom called: mouse_x=%d, mouse_y=%d, zoom_factor=%f\n", mouse_x, mouse_y, zoom_factor);
+// 	printf("New offset_x=%f, offset_y=%f, zoom=%f\n", fractol->offset_x, fractol->offset_y, fractol->zoom);
+// }
 
