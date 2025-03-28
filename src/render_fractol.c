@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   render_fractol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:28:31 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/27 18:00:09 by chiarakappe      ###   ########.fr       */
+/*   Updated: 2025/03/28 18:56:19 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
+
+int	get_colour(int iter, t_fractol *fractol)
+{
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+
+	if (iter == MAX_ITER)
+		return (COLOUR_BLACK);
+	t = (double)iter / fractol->max_iterations;
+
+	r = (int)(252 * (1 - t) * t * 4);
+	g = (int)(190 * (1 - t) * (1 - t) * t * 6);
+	b = (int)(17 + 50 * (10 * t));
+	r %= 256;
+	g %= 256;
+	b %= 256;
+	return (r << 16 | g << 8 | b);
+}
 
 static int iterations(int x, int y, t_fractol *fractol)
 {
@@ -47,6 +67,7 @@ static int iterations(int x, int y, t_fractol *fractol)
 	my_mlx_pixel_put(&fractol->img, x, y, COLOUR_BLACK);
 	return (0);
 }
+
 int	render(t_fractol *fractol)
 {
 	int	x;
@@ -66,3 +87,14 @@ int	render(t_fractol *fractol)
 	mlx_put_image_to_window(fractol->mlx_pointer, fractol->window_pointer, fractol->img.img_pointer, 0, 0);
 	return (0);
 }
+
+void zoom(t_fractol *fractol, int mouse_x, int mouse_y, double zoom_factor)
+{
+    double normalized_x = normalizing(mouse_x, -2, 2, WIDTH);
+    double normalized_y = normalizing(mouse_y, -2, 2, HEIGHT);
+
+    fractol->offset_x += (normalized_x - fractol->offset_x) * (1 - zoom_factor);
+    fractol->offset_y += (normalized_y - fractol->offset_y) * (1 - zoom_factor);
+    fractol->zoom *= zoom_factor;
+}
+

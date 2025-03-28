@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:38:10 by ckappe            #+#    #+#             */
-/*   Updated: 2025/03/27 18:03:22 by chiarakappe      ###   ########.fr       */
+/*   Updated: 2025/03/28 17:24:48 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,3 @@ int	close_window(t_fractol *fractol)
 	exit(EXIT_SUCCESS);
 }
 
-int	handle_keypresses(int keycode, t_fractol *fractol)
-{
-	if (keycode == ESC_KEY)
-		close_window(fractol);
-	else if (keycode == KEY_LEFT)
-		fractol->offset_x += 0.2;
-	else if (keycode == KEY_RIGHT)
-		fractol->offset_x -= 0.2;
-	else if (keycode == KEY_UP)
-		fractol->offset_y += 0.2;
-	else if (keycode == KEY_DOWN)
-		fractol->offset_y -= 0.2;
-	render(fractol);
-	return (0);
-}

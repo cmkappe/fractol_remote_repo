@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/27 17:49:58 by chiarakappe      ###   ########.fr       */
+/*   Updated: 2025/03/28 17:34:13 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int main(int ac, char **av)
 
 	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypresses, &fractol);
 	mlx_hook(fractol.window_pointer, 17, 1L << 17, close_window, &fractol);
+	mlx_mouse_hook(fractol.window_pointer, mouse_hook, &fractol);
 	render(&fractol);
 	mlx_loop(fractol.mlx_pointer);
 	exit(EXIT_SUCCESS);

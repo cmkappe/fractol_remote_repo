@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:34:38 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/27 18:15:50 by chiarakappe      ###   ########.fr       */
+/*   Updated: 2025/03/28 18:19:07 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-
-int	get_colour(int iter, t_fractol *fractol)
-{
-	double	t;
-	int		r;
-	int		g;
-	int		b;
-
-	if (iter == MAX_ITER)
-		return (COLOUR_BLACK);
-	t = (double)iter / fractol->max_iterations;
-	r = (int)(252 * t);
-	g = (int)(190 * (1 - t) * (1 - t) * t * 255);
-	b = (int)(17 * (1 - t) * (1 - t) * (1 - t) * 255);
-	//r = (int)(9 * (1 - t) * t * t * t * 255);
-	//g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-	//b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-	r %= 256;
-	g %= 256;
-	b %= 256;
-	return (r << 16 | g << 8 | b);
-}
 
 t_double_data	fractol_sum(t_double_data z1, t_double_data z2)
 {
@@ -51,6 +29,11 @@ t_double_data	fractol_sqr(t_double_data z)
 	res.imaginary = 2 * z.real * z.imaginary;
 	return (res);
 }
+
+/* double	normalizing(int value, double min, double max, int size, t_fractol *fractol)
+{
+	return ((double)value / size) * (max - min) * fractol->zoom + min;
+} */
 
 double	normalizing(double un_number, double new_min, double new_max,
 	double old_max)

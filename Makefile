@@ -1,6 +1,6 @@
 NAME	=	fractol
 
-SRC		= 	main.c render_fractol.c math.c helpers.c
+SRC		= 	main.c render_fractol.c math.c helpers.c handle_keypress_and_mouse.c
 
 SDIR 	= 	$(addprefix src/, $(SRC))
 
