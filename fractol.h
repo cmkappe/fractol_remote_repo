@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:17:51 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/25 19:06:44 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:57:47 by chiarakappe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@
 #include <unistd.h>
 #include "./mlx/mlx.h"
 
-# define MAX_ITER 100
+# define MAX_ITER 1000
 # define HEIGHT 800
 # define WIDTH 800
 
 # define ESC_KEY 53
-# define ARROW_UP 126
-# define ARROW_DOWN 125
-# define ARROW_LEFT 123
-# define ARROW_RIGHT 124
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 # define MOUSE_WHEEL_UP 2
 # define MOUSE_WHEEL_DOWN 1
 # define KEY_C 8
-
 
 # define COLOUR_BLACK 0x000000
 
@@ -57,13 +56,15 @@ typedef struct s_fractol
 	int		max_iterations;
 	double	julia_real;
 	double	julia_imag;
+	double	offset_x;
+	double	offset_y;
 
 	t_img	img;
 }				t_fractol;
 
 int				ft_abs(int n);
 int				ft_strcmp(char *str1, char *str2);
-int				handle_keypress(int keycode, t_fractol *fractol);
+int				handle_keypresses(int keycode, t_fractol *fractol);
 int				close_window(t_fractol *fractol);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int colour);
 

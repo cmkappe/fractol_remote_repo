@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/25 18:27:40 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/27 17:49:58 by chiarakappe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main(int ac, char **av)
 		fractol.julia_imag = atof(av[3]);
 	}
 
-	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypress, &fractol);
+	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypresses, &fractol);
 	mlx_hook(fractol.window_pointer, 17, 1L << 17, close_window, &fractol);
 	render(&fractol);
 	mlx_loop(fractol.mlx_pointer);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:34:38 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/25 18:44:21 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/27 18:15:50 by chiarakappe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ int	get_colour(int iter, t_fractol *fractol)
 	if (iter == MAX_ITER)
 		return (COLOUR_BLACK);
 	t = (double)iter / fractol->max_iterations;
-	r = (int)(9 * (1 - t) * t * t * t * 255);
-	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
-	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	r = (int)(252 * t);
+	g = (int)(190 * (1 - t) * (1 - t) * t * 255);
+	b = (int)(17 * (1 - t) * (1 - t) * (1 - t) * 255);
+	//r = (int)(9 * (1 - t) * t * t * t * 255);
+	//g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	//b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 	r %= 256;
 	g %= 256;
 	b %= 256;

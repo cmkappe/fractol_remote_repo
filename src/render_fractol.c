@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_fractol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: chiarakappe <chiarakappe@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:28:31 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/25 18:45:22 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/03/27 18:00:09 by chiarakappe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int iterations(int x, int y, t_fractol *fractol)
 	t_double_data	c_const;
 	int				iterations;
 
-	z_imag.real = normalizing(x, -2, 2, WIDTH);
-	z_imag.imaginary = normalizing(y, -2, 2, HEIGHT);
+	z_imag.real = normalizing(x, -2, 2, WIDTH) + fractol->offset_x;
+	z_imag.imaginary = normalizing(y, -2, 2, HEIGHT) + fractol->offset_y;
 	if (ft_strcmp(fractol->title, "Mandelbrot") == 0)
 	{
 		c_const = z_imag;
