@@ -6,18 +6,11 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:38:10 by ckappe            #+#    #+#             */
-/*   Updated: 2025/03/28 17:24:48 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/02 17:15:37 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
-
-int	ft_abs(int n)
-{
-	if (n < 0)
-		return (n * -1);
-	return (n);
-}
 
 int	ft_strcmp(char *str1, char *str2)
 {
@@ -36,8 +29,7 @@ int	ft_strcmp(char *str1, char *str2)
 int	close_window(t_fractol *fractol)
 {
 	(void)fractol;
-	// mlw_destroy_image
-	// mlx_destroy_window
+	// mlw_destroy_image(fractol);
+	// mlx_destroy_window(fractol);
 	exit(EXIT_SUCCESS);
 }
-

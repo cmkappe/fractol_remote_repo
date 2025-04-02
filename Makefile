@@ -10,7 +10,7 @@ HEADER	=	fractol.h
 
 CC		= 	cc
 
-FLAGS	= 	-Wall -Wextra -Werror -g3 -O2
+FLAGS	= 	-Wall -Wextra -Werror -g -O2 -fsanitize=address
 
 # for Mac compilation
 LIB		= 	-framework OpenGL -framework AppKit

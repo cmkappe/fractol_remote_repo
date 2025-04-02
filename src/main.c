@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/03/28 19:34:46 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/02 18:38:22 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int colour)
 {
 	char	*dst;
 
-	dst = data->adress_pointer + (y * data->len_of_line +
-			x * (data->bits_per_pxl / 8));
+	dst = data->adress_pointer + (y * data->len_of_line
+			+ x * (data->bits_per_pxl / 8));
 	*(unsigned int *)dst = colour;
 }
 
@@ -35,30 +35,32 @@ static void	fractol_init(t_fractol *fractol)
 	fractol->zoom = 1;
 	fractol->offset_x = 0;
 	fractol->offset_x = 0;
+	fractol->julia_real = 0;
+	fractol->julia_imag = 0;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_fractol	fractol;
 
-	if (!((ac == 2 && !ft_strcmp(av[1], "Mandelbrot"))
-		|| (ac == 4 && !ft_strcmp(av[1], "Julia"))))
+	if ((ac != 2 && !ft_strcmp(av[1], "Mandelbrot"))
+		|| (ac != 4 && !ft_strcmp(av[1], "Julia"))
+		|| (ac != 2 && !ft_strcmp(av[1], "Burning ship")))
 	{
-		printf("Wrong input, please try again.");
-		exit(EXIT_FAILURE);
+		write(1, "Wrong input, pls try one of the following parameters:\n", 55);
+		write(1, "Mandelbrot\nJulia -.79 .15 // .28 .008\nBurning ship\n", 52);
+		exit(EXIT_SUCCESS);
 	}
-	fractol.title = av[1];
 	fractol_init(&fractol);
-
-	if (!ft_strcmp(av[1], "Julia")) {
+	fractol.title = av[1];
+	if (!ft_strcmp(av[1], "Julia"))
+	{
 		fractol.julia_real = atof(av[2]);
 		fractol.julia_imag = atof(av[3]);
 	}
-
 	mlx_hook(fractol.window_pointer, 2, 1L << 0, handle_keypresses, &fractol);
 	mlx_hook(fractol.window_pointer, 17, 1L << 17, close_window, &fractol);
 	mlx_mouse_hook(fractol.window_pointer, mouse_hook, &fractol);
-	//mlx_key_hook(fractol.window_pointer, key_hook, &fractol);
 	render(&fractol);
 	mlx_loop(fractol.mlx_pointer);
 	exit(EXIT_SUCCESS);
