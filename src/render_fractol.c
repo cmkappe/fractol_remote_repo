@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:28:31 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/02 17:21:48 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/02 17:50:09 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,23 @@ static	t_double_data	pick_fractol(t_fractol *fractol, t_double_data z_imag)
 	if (ft_strcmp(fractol->title, "Julia") == 0)
 	{
 		c_const.real = fractol->julia_real;
-		c_const.imaginary = fractol->julia_imag;
+		c_const.imag = fractol->julia_imag;
 	}
- 	else
+	else
 	{
 		c_const = z_imag;
 		z_imag.real = 0;
-		z_imag.imaginary = 0;
+		z_imag.imag = 0;
 	}
 	return (c_const);
 }
 
-static t_double_data burning(t_fractol *fractol, t_double_data z_imag)
+static t_double_data	burning(t_fractol *fractol, t_double_data z_imag)
 {
 	if (ft_strcmp(fractol->title, "Burning ship") == 0)
 	{
 		z_imag.real = ft_abs(z_imag.real);
-		z_imag.imaginary = ft_abs(z_imag.imaginary);
+		z_imag.imag = ft_abs(z_imag.imag);
 	}
 	return (z_imag);
 }
@@ -67,14 +67,14 @@ static int	iterations(int x, int y, t_fractol *fractol)
 	int				iterations;
 
 	z_imag.real = normal(x, -2, 2, WIDTH) / fractol->zoom + fractol->offset_x;
-	z_imag.imaginary = normal(y, -2, 2, HEIGHT) / fractol->zoom + fractol->offset_y;
+	z_imag.imag = normal(y, -2, 2, HEIGHT) / fractol->zoom + fractol->offset_y;
 	c_const = pick_fractol(fractol, z_imag);
 	iterations = 0;
 	while (iterations <= fractol->max_iterations)
 	{
 		z_imag = burning(fractol, z_imag);
 		z_imag = fractol_sum(fractol_sqr(z_imag), c_const);
-		if ((z_imag.real * z_imag.real + z_imag.imaginary * z_imag.imaginary) > 4)
+		if ((z_imag.real * z_imag.real + z_imag.imag * z_imag.imag) > 4)
 		{
 			colour = get_colour(iterations, fractol);
 			my_mlx_pixel_put(&fractol->img, x, y, colour);
