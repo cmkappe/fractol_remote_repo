@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:38:10 by ckappe            #+#    #+#             */
-/*   Updated: 2025/04/04 17:58:32 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:03:55 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strcmp(char *str1, char *str2)
 {
 	int	i;
 
+	if (!str1 || !str2)
+		return (1);
 	i = 0;
 	while (str1[i])
 	{

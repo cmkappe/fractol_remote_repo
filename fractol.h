@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:17:51 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/02 17:59:00 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:18:00 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ typedef struct s_fractol
 	t_img	img;
 }				t_fractol;
 
+
+void			my_mlx_pixel_put(t_img *data, int x, int y, int colour);
+
 double			ft_abs(double n);
 int				ft_strcmp(char *str1, char *str2);
 int				close_window(t_fractol *fractol);
-void			my_mlx_pixel_put(t_img *data, int x, int y, int colour);
+double			ft_atof(char *num);
 
 int				mouse_hook(int button, int x, int y, t_fractol *fractol);
 int				handle_keypresses(int keycode, int x, int y,
