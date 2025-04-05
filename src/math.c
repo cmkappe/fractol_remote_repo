@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:34:38 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/02 17:55:37 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/05 21:22:16 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ t_double_data	fractol_sum(t_double_data z1, t_double_data z2)
 	return (sum);
 }
 
+// (a + bi)^2 = a² - b² + 2abi
+
 t_double_data	fractol_sqr(t_double_data z)
 {
 	t_double_data	res;
-	// (a + bi)^2 = a² - b² + 2abi
+
 	res.real = (z.real * z.real) - (z.imag * z.imag);
 	res.imag = 2 * z.real * z.imag;
 	return (res);

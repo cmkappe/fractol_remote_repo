@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:28:31 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/02 17:50:09 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/05 20:15:50 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	t_double_data	pick_fractol(t_fractol *fractol, t_double_data z_imag)
 
 static t_double_data	burning(t_fractol *fractol, t_double_data z_imag)
 {
-	if (ft_strcmp(fractol->title, "Burning ship") == 0)
+	if (ft_strcmp(fractol->title, "Burning_ship") == 0)
 	{
 		z_imag.real = ft_abs(z_imag.real);
 		z_imag.imag = ft_abs(z_imag.imag);

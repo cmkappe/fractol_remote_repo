@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:17:51 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/04 20:18:00 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/05 21:03:58 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "./mlx/mlx.h"
+# include "mlx/mlx.h"
 
 # define MAX_ITER 80
 # define HEIGHT 800
@@ -74,8 +74,7 @@ int				close_window(t_fractol *fractol);
 double			ft_atof(char *num);
 
 int				mouse_hook(int button, int x, int y, t_fractol *fractol);
-int				handle_keypresses(int keycode, int x, int y,
-					t_fractol *fractol);
+int				handle_keypresses(int keycode, t_fractol *fractol);
 //int				key_hook(int keycode, t_fractol *fractol);
 
 t_double_data	fractol_sum(t_double_data z1, t_double_data z2);

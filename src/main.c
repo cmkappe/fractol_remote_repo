@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/04 20:17:14 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/05 21:32:08 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	fractol_init(t_fractol *fractol)
 	fractol->zoom = 1;
 	fractol->offset_x = 0;
 	fractol->offset_x = 0;
-	fractol->julia_real = 0;
-	fractol->julia_imag = 0;
+	fractol->julia_real = 0.0;
+	fractol->julia_imag = 0.0;
 }
 
 int	main(int ac, char **av)
@@ -44,15 +44,15 @@ int	main(int ac, char **av)
 	t_fractol	fractol;
 
 	if (!((ac == 2 && !ft_strcmp(av[1], "Mandelbrot"))
- 		|| (ac == 4 && !ft_strcmp(av[1], "Julia"))
-		|| (ac == 2 && !ft_strcmp(av[1], "Burning_ship"))))
+			|| (ac == 4 && !ft_strcmp(av[1], "Julia"))
+			|| (ac == 2 && !ft_strcmp(av[1], "Burning_ship"))))
 	{
 		write(1, "Wrong input, pls try one of the following parameters:\n", 55);
 		write(1, "Mandelbrot\nJulia -.79 .15 // .28 .008\nBurning_ship\n", 52);
-		exit(EXIT_SUCCESS);
+		exit(EXIT_FAILURE);
 	}
-	fractol_init(&fractol);
 	fractol.title = av[1];
+	fractol_init(&fractol);
 	if (!ft_strcmp(av[1], "Julia"))
 	{
 		fractol.julia_real = ft_atof(av[2]);
