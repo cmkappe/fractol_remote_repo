@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:50:57 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/05 21:32:08 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/06 19:13:49 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	main(int ac, char **av)
 		write(1, "Mandelbrot\nJulia -.79 .15 // .28 .008\nBurning_ship\n", 52);
 		exit(EXIT_FAILURE);
 	}
+	if (!ft_strcmp(av[1], "Julia") && (!julia_in(av[2]) || !julia_in(av[3])))
+		exit(write(1, "Invalid Julia parameters!\n", 27));
 	fractol.title = av[1];
 	fractol_init(&fractol);
 	if (!ft_strcmp(av[1], "Julia"))

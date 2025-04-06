@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:17:51 by chiarakappe       #+#    #+#             */
-/*   Updated: 2025/04/05 21:03:58 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/06 17:37:51 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ double			ft_abs(double n);
 int				ft_strcmp(char *str1, char *str2);
 int				close_window(t_fractol *fractol);
 double			ft_atof(char *num);
+int				julia_in(char *num);
 
 int				mouse_hook(int button, int x, int y, t_fractol *fractol);
 int				handle_keypresses(int keycode, t_fractol *fractol);

@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:38:10 by ckappe            #+#    #+#             */
-/*   Updated: 2025/04/05 21:29:01 by ckappe           ###   ########.fr       */
+/*   Updated: 2025/04/06 17:54:57 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,30 @@ static int	handle_sign(char *num, int *i)
 		(*i)++;
 	}
 	return (sign);
+}
+
+int	julia_in(char *num)
+{
+	int	i;
+	int	has_decimal;
+
+	i = 0;
+	has_decimal = 0;
+	if (num[i] == '-' || num[i] == '+')
+		i++;
+	while (num[i])
+	{
+		if (num[i] == '.')
+		{
+			if (has_decimal)
+				return (0);
+			has_decimal = 1;
+		}
+		else if (num[i] < '0' || num[i] > '9')
+			return (0);
+		i++;
+	}
+	return (i > 0 && (i > 1 || (num[0] >= '0' && num[0] <= '9')));
 }
 
 double	ft_atof(char *num)
